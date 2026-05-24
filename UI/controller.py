@@ -21,9 +21,9 @@ class Controller:
         return
 
     def handlePrintDetails(self, e):
-        m=self._model.componente_connessa()[0]
-        for i in m:
-            self._view._txtGraphDetails.controls.append(ft.Text(i.name))
+        m=self._model.componente_connessa() #dizionario
+        for i in m.keys():
+            self._view._txtGraphDetails.controls.append(ft.Text(f"{i[0].name} --> {m[i]}"))
         self._view.update_page()
 
 

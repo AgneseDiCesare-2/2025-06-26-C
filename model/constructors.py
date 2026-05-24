@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass
@@ -8,8 +8,10 @@ class Constructor:
     name: str
     nationality: str
     url: str
-    info={} #{anno: [lista informazioni piloti]
-    completate=0
+    #info={} #{anno: [lista informazioni piloti]
+    #completate=0
+    info: dict = field(default_factory=dict)  # {anno: [lista informazioni piloti]}
+    completate: int = 0
 
     def addinfo(self, tupla):
         if len(tupla) == 0:

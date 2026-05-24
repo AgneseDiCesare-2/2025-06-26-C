@@ -41,7 +41,11 @@ class Model:
         for g in connesse:
             dizionario.append((g, len(g)))
         ordinato=sorted(dizionario, key=lambda x: x[1], reverse=True)
-        return ordinato[0]
+        result=ordinato[0]
+        diz={}
+        for n in range (len(result)-1):
+            diz[n] += self._grafo.get_edge_data(result[n], result[n + 1])['weight']
+        return diz
 
     def num_nodi(self):
         return len(self._grafo.nodes)
@@ -50,14 +54,12 @@ class Model:
         return len(self._grafo.edges)
 
     def has_connection(self, nodo1, nodo2):
-        return len(nodo1.info) > 0 and len(nodo2.info) > 0
-        #tanto per cambiare avevo interpretato male
-        """anni1=list(nodo1.info.keys())
+        anni1=list(nodo1.info.keys())
         anni2=list(nodo2.info.keys())
         for anno in anni1:
             for annot in anni2:
                 if anno==annot:
                     return True
-        return False"""
+        return False
 
 
